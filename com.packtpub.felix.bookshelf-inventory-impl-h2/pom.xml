@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.packtpub.felix</groupId>
+	<artifactId>com.packtpub.felix.bookshelf-inventory-impl-h2</artifactId>
+	<version>1.5.0</version>
+	<packaging>bundle</packaging>
+
+	<name>Bookshelf Inventory Impl - H2</name>
+	<description>
+	H2-based implementation of the Bookshelf Inventory API
+	</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr.annotations</artifactId>
+			<version>1.9.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr.annotations</artifactId>
+			<version>1.9.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.packtpub.felix</groupId>
+			<artifactId>
+			com.packtpub.felix.bookshelf-inventory-api</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-scr-plugin</artifactId>
+				<version>1.15.0</version>
+				<executions>
+					<execution>
+						<id>generate-scr-scrdescriptor</id>
+						<goals>
+							<goal>scr</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.1.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Category>sample</Bundle-Category>
+						<Bundle-SymbolicName>${artifactId}</Bundle-SymbolicName>
+						<Bundle-Activator>com.packtpub.felix.bookshelf.inventory.impl.h2.activator.BookInventoryH2ImplActivator</Bundle-Activator>
+						<Export-Package>com.packtpub.felix.bookshelf.inventory.impl.h2</Export-Package>
+						<Private-Package>com.packtpub.felix.bookshelf.inventory.impl.h2.activator</Private-Package>
+					</instructions>
+					<remoteOBR>repo-rel</remoteOBR>
+					<prefixUrl>file:///C:/svn/javaapp.googlecode.com/felixbook/releases</prefixUrl>
+					<ignoreLock>true</ignoreLock>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<distributionManagement>
+		<!-- releases repo -->
+		<repository>
+			<id>repo-rel</id>
+			<url>file:///C:/svn/javaapp.googlecode.com/felixbook/releases</url>
+		</repository>
+	</distributionManagement>
+</project>
